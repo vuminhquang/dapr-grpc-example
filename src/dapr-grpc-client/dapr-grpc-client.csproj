@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>dapr_grpc_client</RootNamespace>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapr.AspNetCore" Version="1.4.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.18.1" />
+    <PackageReference Include="Google.Api.CommonProtos" Version="2.4.0" />
+    <PackageReference Include="Grpc" Version="2.41.0" />
+    <PackageReference Include="Grpc.Core" Version="2.41.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.40.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.41.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include=".\dapr\proto\common\v1\common.proto" ProtoRoot=".\" GrpcServices="Client" />
+    <Protobuf Include=".\dapr\proto\runtime\v1\dapr.proto" ProtoRoot=".\" GrpcServices="Client" Access="Public" ProtoCompile="True" CompileOutputs="True" Generator="MSBuild:Compile" OutputDir="obj\Debug\net5.0\">
+    </Protobuf>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+  </ItemGroup>
+
+</Project>

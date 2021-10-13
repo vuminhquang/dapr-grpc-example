@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  grpc-server:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80;
+    ports:
+    #  - "6001:443"
+      - "6001:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    networks:
+      - dapr-grpc
+  dapr-grpc-client:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80;
+    ports:
+      - "6002:80"
+    networks:
+      - dapr-grpc

@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+  grpc-server:
+    image: ${DOCKER_REGISTRY-}grpcserver
+    build:
+      context: .
+      dockerfile: grpc-server/Dockerfile
+  grpc-server-dapr:
+    image: "daprio/daprd:edge"
+    command: [
+      "./daprd",
+     "-app-id", "grpc-server",
+     "-app-port", "80",
+     #"-app-protocol","grpc",
+     #"-dapr-grpc-port", "3500",
+     #"-placement-host-address", "placement:50006" # Dapr's placement service can be reach via the docker DNS entry
+     ]
+    #volumes:
+    #    - "./components/:/components" # Mount our components folder for the runtime to use
+    depends_on:
+      - grpc-server
+    network_mode: "service:grpc-server" # Attach the nodeapp-dapr service to the nodeapp network namespace
+
+  dapr-grpc-client:
+    image: ${DOCKER_REGISTRY-}daprgrpcclient
+    build:
+      context: .
+      dockerfile: dapr-grpc-client/Dockerfile
+    depends_on:
+      - grpc-server
+  dapr-grpc-client-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd", "-app-id", "dapr-grpc-client", "-app-port", "80", 
+          #"-app-protocol","grpc",
+    #"-dapr-grpc-port", "3500", 
+    #"-placement-host-address", "placement:50006"
+    ]
+    depends_on:
+      - dapr-grpc-client
+    network_mode: "service:dapr-grpc-client"
+
+  #placement:
+  #  image: "daprio/dapr"
+  #  command: ["./placement", "-port", "50006"]
+  #  ports:
+  #    - "50006:50006"
+  #  networks:
+  #    - dapr-grpc
+
+networks:
+    dapr-grpc:
