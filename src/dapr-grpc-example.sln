@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "grpc-server", "grpc-server\grpc-server.csproj", "{F978FCCB-26C5-4841-B131-719A1CC2FEC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api-server", "api-server\api-server.csproj", "{F978FCCB-26C5-4841-B131-719A1CC2FEC9}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{02A0B455-365F-4397-9127-517DC3AB3E22}"
 EndProject

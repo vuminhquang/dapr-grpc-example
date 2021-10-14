@@ -28,7 +28,7 @@ namespace dapr_grpc_client.Controllers
             var daprClient = new Dapr.Client.Autogen.Grpc.v1.Dapr.DaprClient(channel);
             var request = new InvokeServiceRequest
             {
-                Id = "grpc-server",
+                Id = "api-server",
                 Message = new InvokeRequest
                 {
                     Method = "weatherforecast",
@@ -42,7 +42,7 @@ namespace dapr_grpc_client.Controllers
             
             var request2 = new InvokeServiceRequest
             {
-                Id = "grpc-server",
+                Id = "api-server",
                 Message = new InvokeRequest
                 {
                     Method = "weatherforecast/Function2",

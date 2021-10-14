@@ -6,7 +6,7 @@
     <ProjectGuid>02a0b455-365f-4397-9127-517dc3ab3e22</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/weatherforecast</DockerServiceUrl>
-    <DockerServiceName>grpc-server</DockerServiceName>
+    <DockerServiceName>api-server</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

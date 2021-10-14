@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapr.AspNetCore" Version="1.4.0" />
     <PackageReference Include="Google.Protobuf" Version="3.18.1" />
     <PackageReference Include="Google.Api.CommonProtos" Version="2.4.0" />
     <PackageReference Include="Grpc" Version="2.41.0" />

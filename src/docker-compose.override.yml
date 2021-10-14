@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  grpc-server:
+  api-server:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80;
@@ -21,11 +21,11 @@ services:
     networks:
       - dapr-grpc
 
-  grpc-server-dapr:
+  api-server-dapr:
     image: "daprio/daprd:edge"
     command: [
       "./daprd",
-     "-app-id", "grpc-server",
+     "-app-id", "api-server",
      "-app-port", "80",
      #"-app-protocol","grpc",
      #"-dapr-grpc-port", "3500",
@@ -34,8 +34,8 @@ services:
     #volumes:
     #    - "./components/:/components" # Mount our components folder for the runtime to use
     depends_on:
-      - grpc-server
-    network_mode: "service:grpc-server" # Attach the nodeapp-dapr service to the nodeapp network namespace
+      - api-server
+    network_mode: "service:api-server" # Attach the nodeapp-dapr service to the nodeapp network namespace
 
   dapr-grpc-client-dapr:
     image: "daprio/daprd:edge"

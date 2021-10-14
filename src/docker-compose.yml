@@ -1,11 +1,11 @@
 version: '3.4'
 
 services:
-  grpc-server:
+  api-server:
     image: ${DOCKER_REGISTRY-}grpcserver
     build:
       context: .
-      dockerfile: grpc-server/Dockerfile
+      dockerfile: api-server/Dockerfile
 
   dapr-grpc-client:
     image: ${DOCKER_REGISTRY-}daprgrpcclient
@@ -13,7 +13,7 @@ services:
       context: .
       dockerfile: dapr-grpc-client/Dockerfile
     depends_on:
-      - grpc-server
+      - api-server
 
 networks:
     dapr-grpc:
